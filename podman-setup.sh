@@ -66,18 +66,18 @@ setup_tinkerbell_forwarding_and_ports() (
 	# enable IP forwarding for docker
 	if (($(sysctl -n net.ipv4.ip_forward) != 1)); then
 		if [[ -d /etc/sysctl.d ]]; then
-			echo "net.ipv4.ip_forward=1" >/etc/sysctl.d/99-tinkerbell.conf
-			echo "ip_unprivileged_port_start=68" >>/etc/sysctl.d/99-tinkerbell.conf
+			echo "net.ipv4.ip_forward=1" >/etc/sysctl.d/99-tinkerbell-forward.conf
 			
-
 		elif [[ -f /etc/sysctl.conf ]]; then
 			echo "net.ipv4.ip_forward=1" >>/etc/sysctl.conf
-			echo "ip_unprivileged_port_start=68" >> /etc/sysctl.conf
+			# echo "ip_unprivileged_port_start=68" >> /etc/sysctl.conf
 		fi
 
 		sysctl net.ipv4.ip_forward=1
-       	sysctl net.ipv4.ip_unprivileged_port_start=68
+       	# sysctl net.ipv4.ip_unprivileged_port_start=68
+
 	fi
+
 )
 
 
