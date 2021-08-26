@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ENV_FILE=.env
+source $ENV_FILE
 
 export TINKERBELL_TINK_SERVER_IMAGE=quay.io/tinkerbell/tink:sha-1b178dae
 export TINKERBELL_TINK_CLI_IMAGE=quay.io/tinkerbell/tink-cli:sha-1b178dae
@@ -15,13 +17,9 @@ DEPLOYDIR=$(pwd)/deploy
 readonly DEPLOYDIR
 readonly STATEDIR=$DEPLOYDIR/state
 
-podman rm -f --ignore db
-podman rm -f --ignore tink-server-migration
-podman rm -f --ignore tink-server
-podman rm -f --ignore tink-cli
-podman rm -f --ignore hegel
-podman rm -f --ignore boots
-podman rm -f --ignore nginx
+
+podman rm -f --ignore tink-server tink-server-migration tink-cli hegel nginx boots db
+podman rm -f --ignore tink-server tink-server-migration tink-cli hegel nginx boots db
 
 podman run --detach \
            --name db \
