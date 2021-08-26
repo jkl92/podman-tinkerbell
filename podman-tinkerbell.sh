@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+export TINKERBELL_TINK_SERVER_IMAGE=quay.io/tinkerbell/tink:sha-1b178dae
+export TINKERBELL_TINK_CLI_IMAGE=quay.io/tinkerbell/tink-cli:sha-1b178dae
+export TINKERBELL_TINK_BOOTS_IMAGE=quay.io/tinkerbell/boots:sha-ad742e11
+export TINKERBELL_TINK_HEGEL_IMAGE=quay.io/tinkerbell/hegel:sha-c8a68311
+export TINKERBELL_TINK_WORKER_IMAGE=quay.io/tinkerbell/tink-worker:sha-1b178dae
+
 export TINKERBELL_POSTGRES_IMAGE=docker.io/library/postgres:10-alpine
 export TINKBERBELL_NGINX_IMAGE=docker.io/library/nginx:alpine
 
