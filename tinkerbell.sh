@@ -25,7 +25,7 @@ rm -rf cmd CODEOWNERS go.mod go.sum LICENSE README.md script setup.sh shell.nix 
 
 ./generate-envrc.sh ${manual_interface} > .env
 
-sed -i 's|export TINKERBELL_HOST_IP=.*|export TINKERBELL_HOST_IP="${manual_tinkerbell_ip}"|' .env
+sed -i "s|export TINKERBELL_HOST_IP=.*|export TINKERBELL_HOST_IP=$manual_tinkerbell_ip|" .env
 
 curl -L -O https://raw.githubusercontent.com/jkl92/podman-tinkerbell/main/podman-setup.sh
 
