@@ -67,16 +67,16 @@ setup_tinkerbell_forwarding_and_ports() (
 	if (($(sysctl -n net.ipv4.ip_forward) != 1)); then
 		if [[ -d /etc/sysctl.d ]]; then
 			echo "net.ipv4.ip_forward=1" >/etc/sysctl.d/99-tinkerbell.conf
-			echo "ip_unprivileged_port_start=23" >>/etc/sysctl.d/99-tinkerbell.conf
+			echo "ip_unprivileged_port_start=68" >>/etc/sysctl.d/99-tinkerbell.conf
 			
 
 		elif [[ -f /etc/sysctl.conf ]]; then
 			echo "net.ipv4.ip_forward=1" >>/etc/sysctl.conf
-			echo "ip_unprivileged_port_start=23" >> /etc/sysctl.conf
+			echo "ip_unprivileged_port_start=68" >> /etc/sysctl.conf
 		fi
 
 		sysctl net.ipv4.ip_forward=1
-		sysctl net.ipv4.ip_unprivileged_port_start=23
+       	sysctl net.ipv4.ip_unprivileged_port_start=68
 	fi
 )
 
@@ -221,6 +221,7 @@ podman_login() (
 )
 
 
+sudo setup_tinkerbell_forwarding_and_ports
 setup_osie
 generate_certificates
 build_registry_image
