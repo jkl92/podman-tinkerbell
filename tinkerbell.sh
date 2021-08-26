@@ -29,12 +29,12 @@ sed -i "s|export TINKERBELL_HOST_IP=.*|export TINKERBELL_HOST_IP=$manual_tinkerb
 
 curl -L -O https://raw.githubusercontent.com/jkl92/podman-tinkerbell/main/podman-setup.sh
 
-echo "ip_unprivileged_port_start=68" | sudo tee /etc/sysctl.d/99-tinkerbell-ports.conf
+echo "ip_unprivileged_port_start=67" | sudo tee /etc/sysctl.d/99-tinkerbell-ports.conf
 
-echo "ip_unprivileged_port_start=68" | sudo tee -a /etc/sysctl.conf 
+echo "ip_unprivileged_port_start=67" | sudo tee -a /etc/sysctl.conf 
 echo "net.ipv4.ip_forward=1" | sudo tee /etc/sysctl.d/99-tinkerbell-forward.conf
 
-sudo sysctl net.ipv4.ip_unprivileged_port_start=68
+sudo sysctl net.ipv4.ip_unprivileged_port_start=67
 sudo sysctl net.ipv4.ip_forward=1
 
 chmod 700 podman-setup.sh
