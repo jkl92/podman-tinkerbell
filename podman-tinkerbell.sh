@@ -7,6 +7,7 @@ export TINKERBELL_TINK_BOOTS_IMAGE=quay.io/tinkerbell/boots:sha-ad742e11
 export TINKERBELL_TINK_HEGEL_IMAGE=quay.io/tinkerbell/hegel:sha-c8a68311
 export TINKERBELL_TINK_WORKER_IMAGE=quay.io/tinkerbell/tink-worker:sha-1b178dae
 
+
 export TINKERBELL_POSTGRES_IMAGE=docker.io/library/postgres:10-alpine
 export TINKBERBELL_NGINX_IMAGE=docker.io/library/nginx:alpine
 
@@ -24,6 +25,7 @@ podman rm -f --ignore nginx
 
 podman run --detach \
            --name db \
+           --net host \
            --publish 5432:5432/tcp \
            --env POSTGRES_DB=tinkerbell \
            --env POSTGRES_PASSWORD=tinkerbell \
@@ -34,6 +36,7 @@ podman run --detach \
 podman run --detach \
            --name tink-server-migration \
            --restart on-failure \
+           --net host \
            --requires db \
            --volume $DEPLOYDIR/state/certs:/certs/${FACILITY:-onprem}:Z \
            --env ONLY_MIGRATION="true" \
@@ -52,6 +55,7 @@ podman run --detach \
 
 podman run --detach \
            --name tink-server \
+           --net host \
            --restart unless-stopped \
            --publish 42113:42113/tcp \
            --publish 42114:42114/tcp \
@@ -86,6 +90,7 @@ podman run --detach \
 
 podman run --detach \
            --name hegel \
+           --net host \
            --restart unless-stopped \
            --requires db \
            --env ROLLBAR_TOKEN=${ROLLBAR_TOKEN-ignored} \
