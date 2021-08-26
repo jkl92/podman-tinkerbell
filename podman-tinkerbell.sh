@@ -135,7 +135,7 @@ podman run --detach \
            --env DATA_MODEL_VERSION=1 \
            ${TINKERBELL_TINK_BOOTS_IMAGE} -dhcp-addr 0.0.0.0:67 -tftp-addr $TINKERBELL_HOST_IP:69  -http-addr $TINKERBELL_HOST_IP:80 -log-level DEBUG
 
-sudo podman run --detach \
+podman run --detach \
            --name nginx \
            --tty \
            --publish 8080:80/tcp \
