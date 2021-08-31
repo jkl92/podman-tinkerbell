@@ -78,7 +78,7 @@ setup_network_forwarding() (
 
 setup_osie() (
 	mkdir -p "$STATEDIR/webroot"
-
+    OSIE_DOWNLOAD_LINK="https://github.com/tinkerbell/hook/releases/download/5.10.57/hook-x86_64.tar.gz"
 	local osie_current=$STATEDIR/webroot/misc/osie/current
 	local tink_workflow=$STATEDIR/webroot/workflow/
 	if [[ ! -d $osie_current ]] || [[ ! -d $tink_workflow ]]; then
@@ -228,3 +228,4 @@ podman_login
 podman pull hello-world
 podman tag hello-world ${TINKERBELL_HOST_IP}/hello-world
 podman push ${TINKERBELL_HOST_IP}/hello-world
+
