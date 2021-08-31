@@ -77,7 +77,7 @@ setup_network_forwarding() (
 
 setup_osie() (
 	mkdir -p "$STATEDIR/webroot"
-    OSIE_DOWNLOAD_LINK="https://github.com/tinkerbell/hook/releases/download/5.10.57/hook-x86_64.tar.gz"
+    OSIE_DOWNLOAD_LINK="https://tinkerbell-oss.s3.amazonaws.com/osie-uploads/osie-1790-23d78ea47f794d0e5c934b604579c26e5fce97f5.tar.gz"
 	local osie_current=$STATEDIR/webroot/misc/osie/current
 	local tink_workflow=$STATEDIR/webroot/workflow/
 	if [[ ! -d $osie_current ]] || [[ ! -d $tink_workflow ]]; then
@@ -86,7 +86,7 @@ setup_osie() (
 		pushd "$SCRATCH"
 
 		if [[ -z ${TB_OSIE_TAR:-} ]]; then
-			curl -L "${OSIE_DOWNLOAD_LINK}" -o ./osie.tar.gz
+			curl "${OSIE_DOWNLOAD_LINK}" -o ./osie.tar.gz
 			tar -zxf osie.tar.gz
 		else
 			tar -zxf "$TB_OSIE_TAR"
