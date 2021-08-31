@@ -61,7 +61,6 @@ is_network_configured() (
 )
 
 
-
 setup_network_forwarding() (
 	# enable IP forwarding for docker
 	if (($(sysctl -n net.ipv4.ip_forward) != 1)); then
@@ -87,7 +86,7 @@ setup_osie() (
 		pushd "$SCRATCH"
 
 		if [[ -z ${TB_OSIE_TAR:-} ]]; then
-			curl "${OSIE_DOWNLOAD_LINK}" -o ./osie.tar.gz
+			curl -L "${OSIE_DOWNLOAD_LINK}" -o ./osie.tar.gz
 			tar -zxf osie.tar.gz
 		else
 			tar -zxf "$TB_OSIE_TAR"
@@ -228,4 +227,3 @@ podman_login
 podman pull hello-world
 podman tag hello-world ${TINKERBELL_HOST_IP}/hello-world
 podman push ${TINKERBELL_HOST_IP}/hello-world
-
